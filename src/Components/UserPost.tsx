@@ -21,7 +21,7 @@ const UserPost = ({
     <Box
       sx={{
         position: "relative",
-        height: { xs: 100, sm: 200, md: 250 },
+        height: { xs: 150, sm: 250, md: 300 },
         backgroundImage: `url(${images[0]})`,
         backgroundRepeat: "no-repeat",
         backgroundPosition: "center",

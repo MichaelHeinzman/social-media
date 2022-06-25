@@ -17,12 +17,11 @@ function App() {
       alignItems="center"
       sx={{
         backgroundColor: "rgb(250,250,250)",
-
       }}
     >
       <Header />
       <Grid container justifyContent="center" alignItems="center">
-        <Grid item xs={11.5} md={7}>
+        <Grid item xs={11.5} sm={11} md={11} lg={7}>
           {user && <Profile {...user} />}
         </Grid>
       </Grid>

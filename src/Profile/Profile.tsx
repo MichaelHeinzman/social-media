@@ -1,7 +1,8 @@
-import React, { useMemo, useState } from "react";
-import UserPost from "../Components/UserPost";
-import { Grid, Box, Divider } from "@mui/material";
-import { User, apiPosts, Post } from "../types";
+import React from "react";
+import { Button, Grid, Typography } from "@mui/material";
+import { User } from "../types";
+import PostSectionOfProfile from "./PostSectionOfProfile";
+import SettingsIcon from "@mui/icons-material/Settings";
 
 type Props = User;
 const Profile = ({
@@ -10,17 +11,11 @@ const Profile = ({
   username,
   email,
   posts,
+  followers,
+  following,
   conversations,
   picture,
 }: Props) => {
-  const userPosts = useMemo(
-    () =>
-      posts
-        .map((postId: string) => apiPosts[postId])
-        .map((post: Post) => <UserPost {...post} />),
-    [posts]
-  );
-
   return (
     <div
       style={{
@@ -48,11 +43,46 @@ const Profile = ({
             }}
           />
         </Grid>
-        <Grid item xs={6}>
-          <div>Username: {username}</div>
-          <div>Name: {name}</div>
-          <div>Email: {email}</div>
+        <Grid
+          item
+          container
+          flexDirection="column"
+          alignItems="space-between"
+          justifyContent="start"
+          xs={5}
+          gap={2}
+        >
+          <Grid container justifyContent="start" alignItems="center" gap={4}>
+            <Typography fontSize={24}>{username}</Typography>
+            <Button
+              sx={{
+                color: "black",
+                border: "1px solid #CCCCCC",
+                height: 30,
+                width: 120,
+              }}
+            >
+              Edit Profile
+            </Button>
+            <SettingsIcon sx={{ cursor: "pointer" }} />
+          </Grid>
+
+          <Grid container justifyContent="space-between" alignItems="center">
+            <Grid item xs={3}>
+              {posts.length} posts
+            </Grid>
+            <Grid item xs={3}>
+              {followers.length} followers
+            </Grid>
+            <Grid item xs={3}>
+              {following.length} following
+            </Grid>
+          </Grid>
+
+          <Typography fontSize={16}>{name}</Typography>
         </Grid>
+
+        {/* Posts, Followers and Following number */}
       </Grid>
 
       {/* Follow / Message Buttons */}
@@ -61,31 +91,8 @@ const Profile = ({
         <button>Message</button>
       </Grid>
 
-      <Divider />
-
-      {/* Tabs for Posts */}
-      <Grid container justifyContent="center" alignItems="center" gap={1}>
-        <button>POSTS</button>
-        <button>REELS</button>
-        <button>VIDEOS</button>
-        <button>SAVED</button>
-        <button>TAGGED</button>
-      </Grid>
-
-      {/* Load Posts */}
-      <Box
-        sx={{
-          display: "grid",
-          gridTemplateColumns: "repeat(3, 1fr)",
-          gridTemplateRows: `repeat(${Math.ceil(userPosts.length / 3)}, 1fr)`,
-          gridAutoFlow: "column",
-          columnGap: 0.5,
-          rowGap: 0.5,
-          width: "100%",
-        }}
-      >
-        {userPosts}
-      </Box>
+      {/* Post Section */}
+      <PostSectionOfProfile posts={posts} />
     </div>
   );
 };
