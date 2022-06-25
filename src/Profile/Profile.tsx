@@ -1,6 +1,6 @@
 import React, { useMemo, useState } from "react";
 import UserPost from "../Components/UserPost";
-import { Grid, Box } from "@mui/material";
+import { Grid, Box, Divider } from "@mui/material";
 import { User, apiPosts, Post } from "../types";
 
 type Props = User;
@@ -22,64 +22,71 @@ const Profile = ({
   );
 
   return (
-    <Grid container spacing={1} padding={1}>
+    <div
+      style={{
+        paddingTop: 40,
+        paddingBottom: 20,
+        minHeight: "100vh",
+        width: "100%",
+        display: "flex",
+        flexDirection: "column",
+        justifyContent: "start",
+        gap: 10,
+      }}
+    >
       {/* Profile Header */}
-      <Grid item xs={12}>
-        <Grid container sx={{ height: 250 }}>
-          <Grid
-            item
-            xs={4}
-            sx={{
-              display: "flex",
-              justifyContent: "center",
-              alignItems: "center",
+      <Grid container>
+        <Grid item container xs={4} justifyContent="center" alignItems="start">
+          <img
+            src={picture}
+            alt="Profile"
+            style={{
+              objectFit: "contain",
+              height: 140,
+              width: 140,
+              borderRadius: "50%",
             }}
-          >
-            <img
-              src={picture}
-              alt="Profile"
-              style={{
-                objectFit: "contain",
-                height: 140,
-                width: 140,
-                borderRadius: "50%",
-              }}
-            />
-          </Grid>
-          <Grid item xs={6}>
-            <div>Username: {username}</div>
-            <div>Name: {name}</div>
-            <div>Email: {email}</div>
-          </Grid>
+          />
+        </Grid>
+        <Grid item xs={6}>
+          <div>Username: {username}</div>
+          <div>Name: {name}</div>
+          <div>Email: {email}</div>
         </Grid>
       </Grid>
 
       {/* Follow / Message Buttons */}
-      <Grid item container xs={12}>
+      <Grid container justifyContent="center" alignItems="center" gap={1}>
         <button>Follow</button>
         <button>Message</button>
       </Grid>
 
+      <Divider />
+
       {/* Tabs for Posts */}
-      <Grid item container xs={12}>
-        <button>Posts</button>
-        <button>Videos</button>
-        <button>Tagged</button>
+      <Grid container justifyContent="center" alignItems="center" gap={1}>
+        <button>POSTS</button>
+        <button>REELS</button>
+        <button>VIDEOS</button>
+        <button>SAVED</button>
+        <button>TAGGED</button>
       </Grid>
 
       {/* Load Posts */}
-      <Grid item xs={12} md={10}>
-        <Box
-          sx={{
-            display: "grid",
-            gridTemplateColumns: "33% 33% 33%",
-            gap: 1,
-          }}
-        >
-          {userPosts}
-        </Box>
-      </Grid>
-    </Grid>
+      <Box
+        sx={{
+          display: "grid",
+          gridTemplateColumns: "repeat(3, 1fr)",
+          gridTemplateRows: `repeat(${Math.ceil(userPosts.length / 3)}, 1fr)`,
+          gridAutoFlow: "column",
+          columnGap: 0.5,
+          rowGap: 0.5,
+          width: "100%",
+        }}
+      >
+        {userPosts}
+      </Box>
+    </div>
   );
 };
 

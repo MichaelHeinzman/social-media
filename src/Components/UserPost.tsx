@@ -1,19 +1,27 @@
 import React, { useState } from "react";
-import { Grid } from "@mui/material";
+import { Box, Grid } from "@mui/material";
 import { Post } from "../types";
 
 import Favorite from "./Favorite";
 import Comment from "./Comment";
+import PostType from "./PostType";
 
 type Props = Post;
 
-const UserPost = ({ id, description, images, likes, comments }: Props) => {
+const UserPost = ({
+  id,
+  type,
+  description,
+  images,
+  likes,
+  comments,
+}: Props) => {
   const [hover, setHover] = useState(false);
   return (
-    <Grid
-      item
+    <Box
       sx={{
-        height: 250,
+        position: "relative",
+        height: { xs: 100, sm: 200, md: 250 },
         backgroundImage: `url(${images[0]})`,
         backgroundRepeat: "no-repeat",
         backgroundPosition: "center",
@@ -31,25 +39,19 @@ const UserPost = ({ id, description, images, likes, comments }: Props) => {
           container
           justifyContent="center"
           alignItems="center"
+          position="relative"
           height="100%"
-          width="100%"
         >
-          <Grid
-            item
-            container
-            xs={12}
-            gap={1}
-            justifyContent="center"
-            alignItems="center"
-            height="100%"
-            width="100%"
-          >
+          <Box sx={{ position: "absolute", top: 0, right: 0, padding: 1 }}>
+            <PostType type={type} />
+          </Box>
+          <Grid container gap={1} justifyContent="center" alignItems="center">
             <Favorite likes={likes} />
             <Comment comments={comments} />
           </Grid>
         </Grid>
       )}
-    </Grid>
+    </Box>
   );
 };
 

@@ -13,7 +13,7 @@ const userTemplate: User = {
   name: "SethHeinzman",
   username: "GroverGang",
   email: "Seth@Heinzman.net",
-  posts: ["1"],
+  posts: ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11"],
   conversations: [],
   picture:
     "https://scontent.ftpa1-2.fna.fbcdn.net/v/t39.30808-6/271630790_4918554391546812_8366299066619182112_n.jpg?_nc_cat=111&ccb=1-7&_nc_sid=09cbfe&_nc_ohc=1w1Mjmq9kC4AX855ewI&_nc_ht=scontent.ftpa1-2.fna&oh=00_AT_WqM9BVsaJc8PEPsMWG6L9YenxXtilEc1RfYNzxfPCfA&oe=62B6541F",
@@ -27,6 +27,7 @@ type Comment = {
 
 type Post = {
   id: string;
+  type: string;
   description: string;
   images: Array<string>;
   likes: number;
@@ -35,6 +36,7 @@ type Post = {
 
 const userPost: Post = {
   id: "1",
+  type: "COLLECTION",
   description: "This is a post clone",
   images: [
     "https://scontent.ftpa1-1.fna.fbcdn.net/v/t1.18169-9/20431477_1566202116735871_3435143156591963955_n.jpg?_nc_cat=101&ccb=1-7&_nc_sid=8bfeb9&_nc_ohc=ysrJLh1oYloAX9eHGGC&_nc_ht=scontent.ftpa1-1.fna&oh=00_AT-U-KasHe53PfDq7jccmiU2cimVvw1EWqLg4LfIZI-ivw&oe=62D51E00",
@@ -64,6 +66,9 @@ const apiPosts: APIPosts = {
   "6": userPost,
   "7": userPost,
   "8": userPost,
+  "9": userPost,
+  "10": userPost,
+  "11": userPost,
 };
 
 export { userTemplate, userPost, userPosts, apiPosts };
