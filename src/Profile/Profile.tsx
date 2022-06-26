@@ -30,7 +30,7 @@ const Profile = ({
       }}
     >
       {/* Profile Header */}
-      <Grid container>
+      <Grid container paddingBottom={10}>
         <Grid item container xs={4} justifyContent="center" alignItems="start">
           <img
             src={picture}
@@ -53,7 +53,15 @@ const Profile = ({
           gap={2}
         >
           <Grid container justifyContent="start" alignItems="center" gap={4}>
-            <Typography fontSize={24}>{username}</Typography>
+            <Typography
+              sx={{
+                fontSize: 24,
+                textTransform: "lowercase",
+                fontWeight: "light",
+              }}
+            >
+              {username}
+            </Typography>
             <Button
               sx={{
                 color: "black",
@@ -67,14 +75,14 @@ const Profile = ({
             <SettingsIcon sx={{ cursor: "pointer" }} />
           </Grid>
 
-          <Grid container justifyContent="space-between" alignItems="center">
-            <Grid item xs={3}>
+          <Grid container justifyContent="space-between" alignItems="end">
+            <Grid item xs={3} sx={{ cursor: "pointer" }}>
               {posts.length} posts
             </Grid>
-            <Grid item xs={3}>
+            <Grid item xs={3} sx={{ cursor: "pointer" }}>
               {followers.length} followers
             </Grid>
-            <Grid item xs={3}>
+            <Grid item xs={3} sx={{ cursor: "pointer" }}>
               {following.length} following
             </Grid>
           </Grid>
@@ -83,12 +91,6 @@ const Profile = ({
         </Grid>
 
         {/* Posts, Followers and Following number */}
-      </Grid>
-
-      {/* Follow / Message Buttons */}
-      <Grid container justifyContent="center" alignItems="center" gap={1}>
-        <button>Follow</button>
-        <button>Message</button>
       </Grid>
 
       {/* Post Section */}

@@ -9,10 +9,17 @@ type Props = {
 const Favorite = ({ likes }: Props) => {
   return (
     <Box
-      sx={{ display: "flex", justifyContent: "center", alignItems: "center" }}
+      sx={{
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+        gap: 0.5,
+      }}
     >
       <FavoriteIcon sx={{ color: "white", fontSize: "medium" }} />
-      <Typography color="white">{likes}</Typography>
+      <Typography color="white" fontSize="medium">
+        {likes}
+      </Typography>
     </Box>
   );
 };

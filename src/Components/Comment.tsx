@@ -7,7 +7,12 @@ type Props = { comments: any };
 const Comment = ({ comments }: Props) => {
   return (
     <Box
-      sx={{ display: "flex", justifyContent: "center", alignItems: "center" }}
+      sx={{
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+        gap: 0.5,
+      }}
     >
       <CommentIcon
         sx={{
@@ -15,7 +20,9 @@ const Comment = ({ comments }: Props) => {
           fontSize: "medium",
         }}
       />
-      <Typography color="white">{comments.length}</Typography>
+      <Typography color="white" fontSize="medium">
+        {comments.length}
+      </Typography>
     </Box>
   );
 };
