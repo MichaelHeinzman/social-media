@@ -1,8 +1,10 @@
-import React from "react";
+import React, { useState } from "react";
 import { Button, Grid, Typography } from "@mui/material";
 import { User } from "../types";
 import PostSectionOfProfile from "./PostSectionOfProfile";
 import SettingsIcon from "@mui/icons-material/Settings";
+import { Box } from "@mui/system";
+import ProfileSettingsMenu from "./ProfileSettingsMenu";
 
 type Props = User;
 const Profile = ({
@@ -16,16 +18,21 @@ const Profile = ({
   conversations,
   picture,
 }: Props) => {
+  const [settingsOpened, setSettingsOpened] = useState(false);
+  const handleEditProfileClicked = () => {};
+  const handleSettingsClicked = () => setSettingsOpened(true);
+
   return (
     <div
       style={{
         paddingTop: 40,
         paddingBottom: 20,
-        minHeight: "100vh",
+        height: "100vh",
         width: "100%",
         display: "flex",
         flexDirection: "column",
         justifyContent: "start",
+        overflow: settingsOpened ? "hidden" : "",
         gap: 10,
       }}
     >
@@ -69,14 +76,22 @@ const Profile = ({
                 height: 30,
                 width: 120,
               }}
+              onClick={handleEditProfileClicked}
             >
               Edit Profile
             </Button>
-            <SettingsIcon sx={{ cursor: "pointer" }} />
+            <SettingsIcon
+              sx={{ cursor: "pointer" }}
+              onClick={handleSettingsClicked}
+            />
           </Grid>
 
+          {settingsOpened && (
+            <ProfileSettingsMenu setSettingsOpened={setSettingsOpened} />
+          )}
+
           <Grid container justifyContent="space-between" alignItems="end">
-            <Grid item xs={3} sx={{ cursor: "pointer" }}>
+            <Grid item xs={3}>
               {posts.length} posts
             </Grid>
             <Grid item xs={3} sx={{ cursor: "pointer" }}>

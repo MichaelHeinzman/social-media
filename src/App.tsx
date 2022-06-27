@@ -15,6 +15,7 @@ function App() {
       flexDirection="column"
       justifyContent="center"
       alignItems="center"
+      position="relative"
       sx={{
         backgroundColor: "rgb(250,250,250)",
       }}

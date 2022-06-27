@@ -17,6 +17,7 @@ const Header = (Props: Props) => {
     focusedInputColor: "#CCCCCC",
     textValue: "Search",
   };
+
   return (
     <Box
       sx={{
@@ -74,7 +75,7 @@ const Header = (Props: Props) => {
               alignItems="center"
             >
               <HomeIcon cursor="pointer" />{" "}
-              <ChatBubbleOutlineIcon cursor="pointer" />{" "}
+              <ChatBubbleOutlineIcon cursor="pointer" />
               <AddBoxIcon cursor="pointer" />
               <ExploreIcon cursor="pointer" />
               <FavoriteIcon cursor="pointer" />
